@@ -12,6 +12,9 @@ type FuncsAndInterval struct {
 
 var Mappers []FuncsAndInterval
 
+/**
+ * 这里是什么？
+ */
 func BuildMappers() {
 	interval := g.Config().Transfer.Interval
 	Mappers = []FuncsAndInterval{

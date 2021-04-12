@@ -12,7 +12,7 @@ import (
 // 5.1.1: 修复往多个transfer发送数据的时候crash的问题
 const (
 	VERSION          = "5.1.1"
-	COLLECT_INTERVAL = time.Second
+	COLLECT_INTERVAL = time.Second             /*收集频率是每秒*/
 	URL_CHECK_HEALTH = "url.check.health"
 	NET_PORT_LISTEN  = "net.port.listen"
 	DU_BS            = "du.bs"

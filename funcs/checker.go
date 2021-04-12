@@ -6,10 +6,14 @@ import (
 	"github.com/toolkits/sys"
 )
 
+/**
+ * Exporter里面有一个模块叫Collector，专门负责收集系统信息，本函数就是检查它是否能顺利工作
+ */
 func CheckCollector() {
 
 	output := make(map[string]bool)
 
+	/* 通过/proc/stat查看当前的cpu状态，但Mac运行不成功 */
 	_, procStatErr := nux.CurrentProcStat()
 	_, listDiskErr := nux.ListDiskStats()
 	ports, listeningPortsErr := nux.ListeningPorts()

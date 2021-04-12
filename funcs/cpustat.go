@@ -15,6 +15,9 @@ var (
 	psLock          = new(sync.RWMutex)
 )
 
+/**
+ * 更新cpu统计信息，上一次的信息会保留
+ */
 func UpdateCpuStat() error {
 	ps, err := nux.CurrentProcStat()
 	if err != nil {
@@ -23,6 +26,7 @@ func UpdateCpuStat() error {
 
 	psLock.Lock()
 	defer psLock.Unlock()
+	/*数组有两个元素，把数组中[0]的内容拷贝到[1]处，然后[0]处放上最新的cpu统计*/
 	for i := historyCount - 1; i > 0; i-- {
 		procStatHistory[i] = procStatHistory[i-1]
 	}

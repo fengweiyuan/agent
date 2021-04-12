@@ -14,6 +14,9 @@ var (
 	dsLock       = new(sync.RWMutex)
 )
 
+/**
+ * 更新Disk统计信息
+ */
 func UpdateDiskStats() error {
 	dsList, err := nux.ListDiskStats()
 	if err != nil {

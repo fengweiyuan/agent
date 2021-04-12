@@ -56,6 +56,7 @@ func AutoRender(w http.ResponseWriter, data interface{}, err error) {
 	RenderDataJson(w, data)
 }
 
+/*开启Http服务*/
 func Start() {
 	if !g.Config().Http.Enabled {
 		return
@@ -66,11 +67,13 @@ func Start() {
 		return
 	}
 
+	/*s指向一个http.Server*/
 	s := &http.Server{
 		Addr:           addr,
 		MaxHeaderBytes: 1 << 30,
 	}
 
+	/*开始服务*/
 	log.Println("listening", addr)
 	log.Fatalln(s.ListenAndServe())
 }

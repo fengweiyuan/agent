@@ -8,6 +8,9 @@ import (
 	"strings"
 )
 
+/**
+ * 取得当前的插件版本
+ */
 func GetCurrPluginVersion() string {
 	if !Config().Plugin.Enabled {
 		return "plugin not enabled"

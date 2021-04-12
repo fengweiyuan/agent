@@ -23,6 +23,9 @@ func (this *SingleConnRpcClient) close() {
 	}
 }
 
+/**
+ * 连接服务器
+ */
 func (this *SingleConnRpcClient) serverConn() error {
 	if this.rpcClient != nil {
 		return nil
@@ -31,6 +34,7 @@ func (this *SingleConnRpcClient) serverConn() error {
 	var err error
 	var retry int = 1
 
+	/*无限循环*/
 	for {
 		if this.rpcClient != nil {
 			return nil
@@ -50,19 +54,25 @@ func (this *SingleConnRpcClient) serverConn() error {
 	}
 }
 
+/**
+ *
+ */
 func (this *SingleConnRpcClient) Call(method string, args interface{}, reply interface{}) error {
 
 	this.Lock()
 	defer this.Unlock()
 
+	/*连接服务器*/
 	err := this.serverConn()
 	if err != nil {
 		return err
 	}
 
+	/**/
 	timeout := time.Duration(50 * time.Second)
 	done := make(chan error, 1)
 
+	/**/
 	go func() {
 		err := this.rpcClient.Call(method, args, reply)
 		done <- err
